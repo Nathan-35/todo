@@ -51,6 +51,9 @@ export default {
         saveToLocalStorage() {
             localStorage.setItem('posts', JSON.stringify(this.posts))
         },
+        getNotes() {
+            this.posts = JSON.parse(localStorage.getItem('posts')) || []
+        },
         async fetchPosts() {
             try {
                 this.isLoadingPosts = true
@@ -64,7 +67,7 @@ export default {
         }
     },
     mounted() {
-        this.posts = JSON.parse(localStorage.getItem('posts')) || []
+        this.getNotes()
         this.fetchPosts()
     },
     watch: {
